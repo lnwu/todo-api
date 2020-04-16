@@ -10,12 +10,12 @@ provider:
     NODE_ENV: ${env:NODE_ENV, 'development'}
 
 functions:
-  hello:
+  todo:
     handler: handler.hello
     events:
       - http:
-          path: hello
-          method: get
+          path: "{proxy+}"
+          method: any
 
 plugins:
   - serverless-offline
@@ -27,3 +27,5 @@ custom:
   prune:
     automatic: true
     number: 3
+  serverless-offline:
+    resourceRoutes: true
