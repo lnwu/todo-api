@@ -1,0 +1,43 @@
+{
+  "name": "todo-api",
+  "version": "0.0.0",
+  "repository": "git@github.com:lnwu/todo-api.git",
+  "author": "lnwu <wind2729@gmail.com>",
+  "license": "MIT",
+  "scripts": {
+    "start": "sls offline start",
+    "deploy": "sls deploy",
+    "build": "sls package",
+    "lint": "eslint . --ext .ts"
+  },
+  "dependencies": {
+    "serverless": "^1.59.3",
+    "serverless-dotenv-plugin": "^2.1.1",
+    "serverless-offline": "^5.12.1",
+    "serverless-plugin-typescript": "^1.1.9"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "*.ts": [
+      "eslint . --ext .ts --fix",
+      "git add"
+    ]
+  },
+  "devDependencies": {
+    "@types/aws-lambda": "^8.10.39",
+    "@typescript-eslint/eslint-plugin": "^2.12.0",
+    "@typescript-eslint/parser": "^2.12.0",
+    "eslint": "^6.7.2",
+    "eslint-config-prettier": "^6.7.0",
+    "eslint-plugin-prettier": "^3.1.2",
+    "husky": "^4.0.2",
+    "lint-staged": "^10.0.3",
+    "prettier": "^1.19.1",
+    "serverless-prune-plugin": "^1.4.1",
+    "typescript": "^3.7.5"
+  }
+}

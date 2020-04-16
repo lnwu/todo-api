@@ -1,0 +1,29 @@
+service: aws-serverless-template
+
+provider:
+  name: aws
+  runtime: nodejs10.x
+  region: ap-southeast-1
+  stage: ${env:STAGE,'local'}
+  environment:
+    STAGE: ${self:provider.stage}
+    NODE_ENV: ${env:NODE_ENV, 'development'}
+
+functions:
+  hello:
+    handler: handler.hello
+    events:
+      - http:
+          path: hello
+          method: get
+
+plugins:
+  - serverless-offline
+  - serverless-plugin-typescript
+  - serverless-prune-plugin
+  - serverless-dotenv-plugin
+
+custom:
+  prune:
+    automatic: true
+    number: 3
