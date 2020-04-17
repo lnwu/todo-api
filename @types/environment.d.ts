@@ -1,5 +1,5 @@
 declare namespace NodeJS {
   export interface ProcessEnv {
-    TEST_ENV: string
+    GOOGLE_APPLICATION_CREDENTIALS: string
   }
 }

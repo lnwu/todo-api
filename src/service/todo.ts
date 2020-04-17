@@ -1,7 +1,9 @@
+import { add, getList } from "../repo/todo"
+
 export const getTodoList = async () => {
-  return []
+  return await getList()
 }
 
 export const addTodo = async () => {
-  return []
+  return await add({ title: "title" })
 }
