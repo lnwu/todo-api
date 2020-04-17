@@ -23,7 +23,7 @@ jobs:
       env:
         CI: true
 
-  build:
+  deploy:
     needs: test
     runs-on: ubuntu-latest
     strategy:
@@ -35,7 +35,7 @@ jobs:
       uses: actions/setup-node@v1
       with:
         node-version: ${{ matrix.node-version }}
-    - run: yarn install
+    - run: yarn install --production
     - run: yarn deploy
       env:
         AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
