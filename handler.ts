@@ -4,6 +4,7 @@ import {
   APIGatewayProxyResult,
 } from "aws-lambda"
 import { getTodoList, addTodo } from "./src/service/todo"
+import { initDB } from "./src/repository/config"
 
 export const root: Handler = async (
   event: APIGatewayProxyEvent
@@ -12,6 +13,8 @@ export const root: Handler = async (
   const path = event.path as "/todos" | "/todo"
   const method = event.httpMethod as "GET" | "POST" | "DELETE"
   const body = JSON.parse(event.body || "{}")
+
+  initDB()
 
   switch (path) {
     case "/todos": {

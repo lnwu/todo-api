@@ -1,4 +1,4 @@
-import { add, getList } from "../repo/todo"
+import { add, getList } from "../repository/todo"
 import { ToBeCreateTodo } from "../model/todo"
 
 export const addTodo = async (newTodo: ToBeCreateTodo) => {

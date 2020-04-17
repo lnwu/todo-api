@@ -8,16 +8,20 @@
     "start": "sls offline start",
     "deploy": "sls deploy",
     "build": "sls package",
+    "test": "jest",
     "lint": "eslint . --ext .ts"
   },
   "dependencies": {
+    "@types/jest": "^25.2.1",
     "cross-env": "^7.0.2",
+    "jest": "^25.3.0",
     "leancloud-storage": "^4.5.3",
     "leanengine": "^3.6.0",
     "serverless": "^1.59.3",
     "serverless-dotenv-plugin": "^2.1.1",
     "serverless-offline": "^6.1.4",
-    "serverless-plugin-typescript": "^1.1.9"
+    "serverless-plugin-typescript": "^1.1.9",
+    "ts-jest": "^25.4.0"
   },
   "husky": {
     "hooks": {
