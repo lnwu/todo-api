@@ -5,6 +5,12 @@ provider:
   runtime: nodejs12.x
   region: ap-northeast-1
   stage: ${env:STAGE,'local'}
+  environment:
+    STAGE: ${self:provider.stage}
+    LEANCLOUD_APP_ID: ${env:LEANCLOUD_APP_ID}
+    LEANCLOUD_APP_KEY: ${env:LEANCLOUD_APP_KEY}
+    LEANCLOUD_APP_MASTER_KEY: ${env:LEANCLOUD_APP_MASTER_KEY}
+    SERVER_URL: ${env:SERVER_URL}
 
 functions:
   todo:
