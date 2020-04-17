@@ -1,4 +1,4 @@
-service: aws-serverless-template
+service: todo-api
 
 provider:
   name: aws
@@ -13,6 +13,10 @@ functions:
       - http:
           path: "{proxy+}"
           method: any
+
+package:
+  exclude:
+    - node_modules/**
 
 plugins:
   - serverless-offline

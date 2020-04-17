@@ -1,0 +1,47 @@
+name: Deploy to Dev
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [12.x]
+    steps:
+    - uses: actions/checkout@v2
+    - name: Use Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v1
+      with:
+        node-version: ${{ matrix.node-version }}
+    - run: yarn install
+    - run: yarn test
+      env:
+        CI: true
+
+  build:
+    needs: test
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [12.x]
+    steps:
+    - uses: actions/checkout@v2
+    - name: Use Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v1
+      with:
+        node-version: ${{ matrix.node-version }}
+    - run: yarn install
+    - run: yarn deploy
+      env:
+        AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        STAGE: development
+        LEANCLOUD_APP_ID: v5se67sEnQA1va2vhkJyle39-gzGzoHsz
+        LEANCLOUD_APP_KEY: Os3KaQrxMBe3nhVtAhNcbBtt
+        LEANCLOUD_APP_MASTER_KEY: ubYYUxooK8Hf9vJLVsi6z5lU
+        SERVER_URL: https://v5se67se.lc-cn-n1-shared.com

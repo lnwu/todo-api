@@ -12,16 +12,12 @@
     "lint": "eslint . --ext .ts"
   },
   "dependencies": {
-    "@types/jest": "^25.2.1",
-    "cross-env": "^7.0.2",
-    "jest": "^25.3.0",
     "leancloud-storage": "^4.5.3",
     "leanengine": "^3.6.0",
     "serverless": "^1.59.3",
     "serverless-dotenv-plugin": "^2.1.1",
     "serverless-offline": "^6.1.4",
-    "serverless-plugin-typescript": "^1.1.9",
-    "ts-jest": "^25.4.0"
+    "serverless-plugin-typescript": "^1.1.9"
   },
   "husky": {
     "hooks": {
@@ -35,15 +31,18 @@
   },
   "devDependencies": {
     "@types/aws-lambda": "^8.10.39",
+    "@types/jest": "^25.2.1",
     "@typescript-eslint/eslint-plugin": "^2.12.0",
     "@typescript-eslint/parser": "^2.12.0",
     "eslint": "^6.7.2",
     "eslint-config-prettier": "^6.7.0",
     "eslint-plugin-prettier": "^3.1.2",
     "husky": "^4.0.2",
+    "jest": "^25.3.0",
     "lint-staged": "^10.0.3",
     "prettier": "^2.0.4",
     "serverless-prune-plugin": "^1.4.1",
+    "ts-jest": "^25.4.0",
     "typescript": "^3.7.5"
   }
 }

@@ -1,10 +1,8 @@
-name: Deploy to Dev
+name: Deploy to Stg
 
 on:
-  push:
-    branches: [ master ]
   pull_request:
-    branches: [ master ]
+    branches: [ staging ]
 
 jobs:
   test:
@@ -40,3 +38,8 @@ jobs:
       env:
         AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
         AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        STAGE: staging
+        LEANCLOUD_APP_ID: wvpfMzH4o4DE11yx0WKIdb1K-gzGzoHsz
+        LEANCLOUD_APP_KEY: myGbvH7Y59jOB6gB90n9MDx5
+        LEANCLOUD_APP_MASTER_KEY: bIeA3WrqAWc9b5dN3queQCq9
+        SERVER_URL: https://wvpfmzh4.lc-cn-n1-shared.com
