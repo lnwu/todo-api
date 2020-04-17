@@ -7562,7 +7562,7 @@ serverless-plugin-typescript@^1.1.9:
     globby "^9.2.0"
     lodash "^4.17.11"
 
-serverless-prune-plugin@^1.4.1:
+serverless-prune-plugin@^1.4.2:
   version "1.4.2"
   resolved "https://registry.npm.taobao.org/serverless-prune-plugin/download/serverless-prune-plugin-1.4.2.tgz#785ae3f90fe2f505078c5d1663a2724bd2b64833"
   integrity sha1-eFrj+Q/i9QUHjF0WY6JyS9K2SDM=

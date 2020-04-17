@@ -17,7 +17,8 @@
     "serverless": "^1.59.3",
     "serverless-dotenv-plugin": "^2.1.1",
     "serverless-offline": "^6.1.4",
-    "serverless-plugin-typescript": "^1.1.9"
+    "serverless-plugin-typescript": "^1.1.9",
+    "serverless-prune-plugin": "^1.4.2"
   },
   "husky": {
     "hooks": {
@@ -39,7 +40,6 @@
     "jest": "^25.3.0",
     "lint-staged": "^10.0.3",
     "prettier": "^2.0.4",
-    "serverless-prune-plugin": "^1.4.1",
     "ts-jest": "^25.4.0",
     "typescript": "^3.7.5"
   }
