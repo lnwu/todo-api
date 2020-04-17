@@ -1,7 +1,7 @@
 import {
   APIGatewayProxyEvent,
   Handler,
-  APIGatewayProxyResult
+  APIGatewayProxyResult,
 } from "aws-lambda"
 import { getTodoList, addTodo } from "./src/service/todo"
 
@@ -9,14 +9,14 @@ export const hello: Handler = async (
   event: APIGatewayProxyEvent
 ): Promise<APIGatewayProxyResult> => {
   console.log("REQUEST ID: ", event.requestContext.requestId)
-  const path = event.path as "/todoList" | "/todo"
+  const path = event.path as "/todos" | "/todo"
   const method = event.httpMethod as "GET" | "POST" | "DELETE"
 
   switch (path) {
-    case "/todoList": {
+    case "/todos": {
       return {
         statusCode: 200,
-        body: JSON.stringify(await getTodoList())
+        body: JSON.stringify(await getTodoList()),
       }
     }
 
@@ -24,7 +24,7 @@ export const hello: Handler = async (
       if (method === "POST") {
         return {
           statusCode: 200,
-          body: JSON.stringify(await addTodo())
+          body: JSON.stringify(await addTodo()),
         }
       }
     }
@@ -33,7 +33,7 @@ export const hello: Handler = async (
     default: {
       return {
         statusCode: 404,
-        body: "Not Found"
+        body: "Not Found",
       }
     }
   }
