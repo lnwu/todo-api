@@ -14,10 +14,6 @@ functions:
           path: "{proxy+}"
           method: any
 
-package:
-  exclude:
-    - node_modules/**
-
 plugins:
   - serverless-offline
   - serverless-plugin-typescript
