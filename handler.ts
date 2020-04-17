@@ -5,12 +5,13 @@ import {
 } from "aws-lambda"
 import { getTodoList, addTodo } from "./src/service/todo"
 
-export const hello: Handler = async (
+export const root: Handler = async (
   event: APIGatewayProxyEvent
 ): Promise<APIGatewayProxyResult> => {
   console.log("REQUEST ID: ", event.requestContext.requestId)
   const path = event.path as "/todos" | "/todo"
   const method = event.httpMethod as "GET" | "POST" | "DELETE"
+  const body = JSON.parse(event.body || "{}")
 
   switch (path) {
     case "/todos": {
@@ -24,7 +25,7 @@ export const hello: Handler = async (
       if (method === "POST") {
         return {
           statusCode: 200,
-          body: JSON.stringify(await addTodo()),
+          body: JSON.stringify(await addTodo(body)),
         }
       }
     }

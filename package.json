@@ -11,7 +11,9 @@
     "lint": "eslint . --ext .ts"
   },
   "dependencies": {
-    "aws-sdk": "^2.657.0",
+    "cross-env": "^7.0.2",
+    "leancloud-storage": "^4.5.3",
+    "leanengine": "^3.6.0",
     "serverless": "^1.59.3",
     "serverless-dotenv-plugin": "^2.1.1",
     "serverless-offline": "^6.1.4",
