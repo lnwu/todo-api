@@ -6,5 +6,5 @@ export const addTodo = async (newTodo: ToBeCreateTodo) => {
 }
 
 export const getTodoList = async () => {
-  return await getList()
+  return [{ title: "title-test" }]
 }
