@@ -1,7 +1,7 @@
 name: Deploy to Stg
 
 on:
-  pull_request:
+  push:
     branches: [ staging ]
 
 jobs:
