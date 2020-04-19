@@ -38,6 +38,16 @@ paths:
             type: "array"
             items:
               $ref: "#/definitions/Todo"
+  /todo:
+    post:
+      tags:
+        - "todo"
+      summary: "Create todo."
+      responses:
+        200:
+          description: "Success"
+          schema:
+            $ref: "#/definitions/Todo"
   /pet/{petId}/uploadImage:
     post:
       tags:
@@ -722,12 +732,20 @@ definitions:
   Todo:
     type: "object"
     properties:
-      id:
+      objectId:
         type: "string"
-        example: "xxxxxxx"
+        example: "5e99c372ff54810009c61b3b"
       title:
         type: "string"
         example: "title"
+      createdAt:
+        type: "string"
+        format: "date-time"
+        example: "2020-04-17T15:19:38.180Z"
+      updatedAt:
+        type: "string"
+        format: "date-time"
+        example: "2020-04-17T15:19:38.180Z"
 externalDocs:
   description: "Find out more about Swagger"
   url: "http://swagger.io"
