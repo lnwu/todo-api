@@ -13,6 +13,10 @@ export const root: Handler = async (
   const path = event.path as "/todos" | "/todo"
   const method = event.httpMethod as "GET" | "POST" | "DELETE"
   const body = JSON.parse(event.body || "{}")
+  const headers = {
+    "Access-Control-Allow-Origin": "*",
+    "Access-Control-Allow-Credentials": true,
+  }
 
   initDB()
 
@@ -20,6 +24,7 @@ export const root: Handler = async (
     case "/todos": {
       return {
         statusCode: 200,
+        headers,
         body: JSON.stringify(await getTodoList()),
       }
     }
@@ -28,6 +33,7 @@ export const root: Handler = async (
       if (method === "POST") {
         return {
           statusCode: 200,
+          headers,
           body: JSON.stringify(await addTodo(body)),
         }
       }
@@ -37,6 +43,7 @@ export const root: Handler = async (
     default: {
       return {
         statusCode: 404,
+        headers,
         body: "Not Found",
       }
     }
