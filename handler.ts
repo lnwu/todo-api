@@ -17,19 +17,16 @@ export const root: Handler = async (
     "Access-Control-Allow-Origin": "*",
     "Access-Control-Allow-Credentials": true,
   }
+  const defaultResponse = {
+    statusCode: 404,
+    headers,
+    body: "Not Found",
+  }
 
   initDB()
 
   switch (path) {
     case "/todos": {
-      return {
-        statusCode: 200,
-        headers,
-        body: JSON.stringify(await getTodoList()),
-      }
-    }
-
-    case "/todo": {
       if (method === "POST") {
         return {
           statusCode: 200,
@@ -37,15 +34,24 @@ export const root: Handler = async (
           body: JSON.stringify(await addTodo(body)),
         }
       }
+
+      if (method === "GET") {
+        return {
+          statusCode: 200,
+          headers,
+          body: JSON.stringify(await getTodoList()),
+        }
+      }
+
+      return defaultResponse
     }
 
-    // eslint-disable-next-line no-fallthrough
+    case "/todo": {
+      return defaultResponse
+    }
+
     default: {
-      return {
-        statusCode: 404,
-        headers,
-        body: "Not Found",
-      }
+      return defaultResponse
     }
   }
 }
