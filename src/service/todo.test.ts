@@ -8,7 +8,7 @@ describe("todo", () => {
     test("should return value base on repository response", async () => {
       jest.spyOn(repository, "getList").mockResolvedValue([{ title: "title" }])
 
-      expect(await getTodoList()).toEqual([{ title: "title" }])
+      expect(await getTodoList()).toEqual([{ title: "title-test" }])
     })
   })
 })
