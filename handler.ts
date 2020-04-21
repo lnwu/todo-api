@@ -13,32 +13,45 @@ export const root: Handler = async (
   const path = event.path as "/todos" | "/todo"
   const method = event.httpMethod as "GET" | "POST" | "DELETE"
   const body = JSON.parse(event.body || "{}")
+  const headers = {
+    "Access-Control-Allow-Origin": "*",
+    "Access-Control-Allow-Credentials": true,
+  }
+  const defaultResponse = {
+    statusCode: 404,
+    headers,
+    body: "Not Found",
+  }
 
   initDB()
 
   switch (path) {
     case "/todos": {
-      return {
-        statusCode: 200,
-        body: JSON.stringify(await getTodoList()),
-      }
-    }
-
-    case "/todo": {
       if (method === "POST") {
         return {
           statusCode: 200,
+          headers,
           body: JSON.stringify(await addTodo(body)),
         }
       }
+
+      if (method === "GET") {
+        return {
+          statusCode: 200,
+          headers,
+          body: JSON.stringify(await getTodoList()),
+        }
+      }
+
+      return defaultResponse
     }
 
-    // eslint-disable-next-line no-fallthrough
+    case "/todo": {
+      return defaultResponse
+    }
+
     default: {
-      return {
-        statusCode: 404,
-        body: "Not Found",
-      }
+      return defaultResponse
     }
   }
 }

@@ -1,0 +1,103 @@
+---
+openapi: 3.0.0
+info:
+  title: TODO API
+  description: 待办事项列表 API 文档。
+  version: 1.0.0
+  contact:
+    email: "wind2729@gmail.com"
+
+servers:
+  - url: https://bdixp21bc2.execute-api.ap-northeast-1.amazonaws.com/development
+    description: Dev 环境
+  - url: https://w0ozi9d483.execute-api.ap-northeast-1.amazonaws.com/staging
+    description: Stg 环境
+tags:
+  - name: "todo"
+paths:
+  /todos:
+    get:
+      tags:
+        - "todo"
+      summary: "获取所有的待办事项列表"
+      responses:
+        200:
+          description: "获取成功"
+          content:
+            application/json:
+              schema:
+                type: "array"
+                items:
+                  $ref: "#/components/schemas/Todo"
+    post:
+      tags:
+        - "todo"
+      summary: "新建一个待办事项列表"
+      requestBody:
+        required: true
+        description: "需要创建的待办事项内容"
+        content:
+          "application/json":
+            schema:
+              $ref: "#/components/schemas/ToBeCreatedTodo"
+      responses:
+        200:
+          description: "创建成功"
+          content:
+            application/json:
+              schema:
+                type: "array"
+                items:
+                  $ref: "#/components/schemas/Todo"
+        400:
+          description: "参数出错"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+components:
+  schemas:
+    Todo:
+      type: "object"
+      required: ["objectId", "title", "createdAt", "updatedAt"]
+      properties:
+        objectId:
+          type: "string"
+          description: "自动生成的uuid"
+          example: "5e99c372ff54810009c61b3b"
+        title:
+          type: "string"
+          description: "创建时传入的标题"
+          example: "标题"
+        createdAt:
+          type: "string"
+          description: "创建时间"
+          format: "date-time"
+          example: "2020-04-17T15:19:38.180Z"
+        updatedAt:
+          type: "string"
+          description: "最后更新时间"
+          format: "date-time"
+          example: "2020-04-17T15:19:38.180Z"
+    ToBeCreatedTodo:
+      type: "object"
+      required: ["title"]
+      properties:
+        title:
+          type: "string"
+          example: "标题"
+    Error:
+      type: "object"
+      required: ["code", "message"]
+      properties:
+        code:
+          type: "number"
+          example: 1
+          description: "错误码"
+        message:
+          type: "string"
+          example: "title是必填项"
+          description: "错误描述"
+externalDocs:
+  description: "Find out more about Swagger"
+  url: "http://swagger.io"

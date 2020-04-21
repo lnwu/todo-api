@@ -24,7 +24,9 @@ export const create = async (dto: ToBeCreateTodo) => {
 }
 
 export const get = async () => {
+  console.log("START GET")
   const docs = await Query.find()
+  console.log("END GET")
 
   return docs.map((doc) => doc.toJSON())
 }
